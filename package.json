@@ -1,0 +1,37 @@
+{
+  "name": "bundle_lig",
+  "version": "0.0.1",
+  "description": "a bundle for the library version of caleydo web",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": "Caleydo/bundle_lib",
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "caleydo_core": "*",
+    "caleydo_d3": "*",
+    "caleydo_links": "*",
+    "caleydo_provenance": "*",
+    "caleydo_tooltip": "*",
+    "caleydo_vis": "*",
+    "caleydo_vis_lineup": "*",
+    "caleydo_window": "*",
+    "caleydo_graph": "*",
+    "caleydo_screenshot": "*",
+    "caleydo_vis_graph": "*",
+    "clue": "*",
+    "wrapper_bootstrap_fontawesome": "*"
+  },
+  "publishConfig": {
+    "registry": "http://registry.caleydo.org/"
+  },
+  "caleydo": {
+    "products": [
+      {
+        "id": "lib",
+        "name": "Library",
+        "type": "lib",
+        "expose": "Caleydo"
+      }
+    ]
+  }
+}
