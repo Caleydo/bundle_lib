@@ -13,7 +13,7 @@
     "caleydo_vis_lineup": "*",
     "caleydo_window": "*",
     "clue": "*",
-    "wrapper_bootstrap_fontawesome": "*"
+    "caleydo_bootstrap_fontawesome": "*"
   },
   "publishConfig": {
     "registry": "http://registry.caleydo.org/"
