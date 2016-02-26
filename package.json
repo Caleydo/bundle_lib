@@ -9,15 +9,9 @@
   "peerDependencies": {
     "caleydo_core": "*",
     "caleydo_d3": "*",
-    "caleydo_links": "*",
-    "caleydo_provenance": "*",
-    "caleydo_tooltip": "*",
     "caleydo_vis": "*",
     "caleydo_vis_lineup": "*",
     "caleydo_window": "*",
-    "caleydo_graph": "*",
-    "caleydo_screenshot": "*",
-    "caleydo_vis_graph": "*",
     "clue": "*",
     "wrapper_bootstrap_fontawesome": "*"
   },
