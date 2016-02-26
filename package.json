@@ -12,7 +12,7 @@
     "caleydo_vis": "*",
     "caleydo_vis_lineup": "*",
     "caleydo_window": "*",
-    "clue": "*",
+    "caleydo_clue": "*",
     "caleydo_bootstrap_fontawesome": "*"
   },
   "publishConfig": {
