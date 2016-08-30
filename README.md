@@ -8,6 +8,9 @@ References plugins along with their indirect dependencies in `package.json` are 
 
 Installation
 ------------
+
+[Set up a virtual machine using Vagrant](http://www.caleydo.org/documentation/vagrant/) and run these commands inside the virtual machine:
+
 ```bash
 ./manage.sh clone Caleydo/bundle_lib
 ./manage.sh resolve
