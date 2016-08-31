@@ -1,9 +1,7 @@
 Caleydo Bundle Lib ![Caleydo Web Bundle](https://img.shields.io/badge/Caleydo%20Web-Bundle-FABC15.svg)
 ==================
 
-Purpose
--------
-This plugins defines which plugins should be bundled in the library version of Caleydo Web. 
+This bundle defines which plugins should be bundled in the library version of Caleydo Web. 
 References plugins along with their indirect dependencies in `package.json` are bundled together. 
 
 Installation
