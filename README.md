@@ -14,6 +14,23 @@ Installation
 ./manage.sh resolve
 ```
 
+Building the Bundle
+------------
+
+Install [Browserify](http://browserify.org/) inside the virtual machine only once:
+
+```bash
+npm install -g browserify
+```
+
+Start the build process:
+
+```bash
+grunt build:lib
+```
+
+When the process has finished the bundle is located as compressed file in the _caleydo_web_container/\_dist_ directory.
+
 ***
 
 <a href="https://caleydo.org"><img src="http://caleydo.org/assets/images/logos/caleydo.svg" align="left" width="200px" hspace="10" vspace="6"></a>
