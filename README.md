@@ -23,7 +23,7 @@ Install [Browserify](http://browserify.org/) inside the virtual machine only onc
 npm install -g browserify
 ```
 
-Start the build process:
+Start the build process using the product id:
 
 ```bash
 grunt build:lib
