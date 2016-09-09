@@ -10,9 +10,7 @@
     "caleydo_core": "*",
     "caleydo_d3": "*",
     "caleydo_vis": "*",
-    "caleydo_vis_lineup": "*",
-    "caleydo_clue": "*",
-    "caleydo_bootstrap_fontawesome": "*"
+    "caleydo_vis_lineup": "*"
   },
   "publishConfig": {
     "registry": "http://registry.caleydo.org/"
