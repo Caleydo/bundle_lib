@@ -7,10 +7,10 @@
   "dependencies": {
   },
   "peerDependencies": {
-    "caleydo_core": "*",
-    "caleydo_d3": "*",
-    "caleydo_vis": "*",
-    "caleydo_vis_lineup": "*"
+    "caleydo_core": "https://github.com/Caleydo/caleydo_core.git",
+    "caleydo_d3": "https://github.com/Caleydo/caleydo_d3.git",
+    "caleydo_vis": "https://github.com/Caleydo/caleydo_vis.git",
+    "caleydo_vis_lineup": "https://github.com/Caleydo/caleydo_vis_lineup.git"
   },
   "publishConfig": {
     "registry": "http://registry.caleydo.org/"
