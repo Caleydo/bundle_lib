@@ -1,6 +1,7 @@
 language: node_js
 node_js:
-- 6.1.0
+- 0.12.7 # Referenced by Jenkins; Released 2015-07-09.
+#- 6.1.0
 
 script:
 - set -e # Exit on any error
@@ -8,6 +9,7 @@ script:
 - git clone --branch v0.0.1 --depth 1 https://github.com/Caleydo/caleydo_web_container.git
 - ln -s bundle_lib/ caleydo_web_container/plugins/
 - pushd caleydo_web_container
+- npm install # From Jenkins
 - npm install -g grunt tsd
 - bash manage.sh resolve_dev
 - grunt --jenkins
