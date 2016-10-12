@@ -6,12 +6,15 @@ node_js:
 script:
 - set -e # Exit on any error
 - pushd ..
-- git clone --branch v0.0.1 --depth 1 https://github.com/Caleydo/caleydo_web_container.git
-- ln -s bundle_lib/ caleydo_web_container/plugins/
-- pushd caleydo_web_container
-- npm install # From Jenkins
-- npm install -g grunt tsd
-- bash manage.sh resolve_dev
-- grunt --jenkins
-
+-   git clone --branch v0.0.1 --depth 1 https://github.com/Caleydo/caleydo_web_container.git
+-   pushd caleydo_web_container
+-     pushd plugins
+-       ln -s ../../bundle_lib/ .
+-     popd
+-     npm install
+-     npm install -g grunt tsd
+-     bash manage.sh resolve_dev
+-     grunt --jenkins
+-   popd
+- popd
 sudo: false # container-based infrastructure for a faster build
