@@ -1,5 +1,5 @@
 {
-  "main": "build/bundle_lib.js",
+  "main": "build/phovea_bundle_lib.js",
   "files": [
     "src",
     "index.js",
@@ -30,7 +30,7 @@
     "release:minor": "npm version minor && npm publish && git push --follow-tags",
     "release:patch": "npm version patch && npm publish && git push --follow-tags",
     "predist": "npm run build",
-    "dist": "mkdirp dist && cd build && tar cvzf ../dist/bundle_lib.tar.gz *"
+    "dist": "mkdirp dist && cd build && tar cvzf ../dist/phovea_bundle_lib.tar.gz *"
   },
   "devDependencies": {
     "@types/jasmine": "^2.5.35",
@@ -68,7 +68,7 @@
     "phovea_vis": "github:sgratzl/phovea_vis",
     "phovea_vis_lineup": "github:sgratzl/phovea_vis_lineup"
   },
-  "name": "bundle_lib",
+  "name": "phovea_bundle_lib",
   "description": "a bundle for the library version of caleydo web",
   "homepage": "https://phovea.caleydo.org",
   "version": "0.0.1",
@@ -79,10 +79,10 @@
   },
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/phovea/bundle_lib/issues"
+    "url": "https://github.com/phovea/phovea_bundle_lib/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/phovea/bundle_lib.git"
+    "url": "https://github.com/phovea/phovea_bundle_lib.git"
   }
 }

@@ -15,4 +15,4 @@ import 'phovea_d3/phovea_registry.js';
 import 'phovea_vis/phovea_registry.js';
 import 'phovea_vis_lineup/phovea_registry.js';
 //self
-register('bundle_lib',require('./phovea.js'));
+register('phovea_bundle_lib',require('./phovea.js'));
