@@ -1,41 +1,45 @@
-Caleydo Bundle Lib ![Caleydo Web Bundle](https://img.shields.io/badge/Caleydo%20Web-Bundle-FABC15.svg)
-==================
+bundle_lib [![Phovea][phovea-image]][phovea-url] [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+=====================
 
-This bundle defines which plugins should be bundled in the library version of Caleydo Web. 
-References plugins along with their indirect dependencies in `package.json` are bundled together. 
+This bundle defines which plugins should be bundled in the library version of Phovea. 
+References plugins along with their indirect dependencies in `package.json` are bundled together.
 
 Installation
 ------------
 
-[Set up a virtual machine using Vagrant](http://www.caleydo.org/documentation/vagrant/) and run these commands inside the virtual machine:
-
-```bash
-./manage.sh clone Caleydo/bundle_lib
-./manage.sh resolve
+```
+git clone https://github.com/phovea/bundle_lib.git
+cd bundle_lib
+npm install
 ```
 
-Building the Bundle
-------------
+Testing
+-------
 
-Install [Browserify](http://browserify.org/) inside the virtual machine only once:
-
-```bash
-npm install -g browserify
+```
+npm run test
 ```
 
-Start the build process using the product id:
+Building
+--------
 
-```bash
-grunt build:lib
+```
+npm run build
 ```
 
-When the process has finished the bundle is located as compressed file in the _caleydo_web_container/\_dist_ directory.
+
 
 ***
 
 <a href="https://caleydo.org"><img src="http://caleydo.org/assets/images/logos/caleydo.svg" align="left" width="200px" hspace="10" vspace="6"></a>
-This repository is part of **[Caleydo Web](http://caleydo.org/)**, a platform for developing web-based visualization applications. For tutorials, API docs, and more information about the build and deployment process, see the [documentation page](http://caleydo.org/documentation/).
+This repository is part of **[Phovea](http://phovea.caleydo.org/)**, a platform for developing web-based visualization applications. For tutorials, API docs, and more information about the build and deployment process, see the [documentation page](http://caleydo.org/documentation/).
 
 
-
-
+[phovea-image]: https://img.shields.io/badge/Phovea-Web%20Bundle-FABC15.svg
+[phovea-url]: https://phovea.caleydo.org
+[npm-image]: https://badge.fury.io/js/bundle_lib.svg
+[npm-url]: https://npmjs.org/package/bundle_lib
+[travis-image]: https://travis-ci.org/phovea/bundle_lib.svg?branch=master
+[travis-url]: https://travis-ci.org/phovea/bundle_lib
+[daviddm-image]: https://david-dm.org/phovea/bundle_lib.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/phovea/bundle_lib
