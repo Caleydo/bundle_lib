@@ -1,7 +1,7 @@
 {
   "generator-phovea": {
     "type": "bundle",
-    "name": "bundle_lib",
+    "name": "phovea_bundle_lib",
     "author": "The Caleydo Team",
     "githubAccount": "phovea",
     "modules": [

@@ -1,4 +1,4 @@
-bundle_lib [![Phovea][phovea-image]][phovea-url] [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+phovea_bundle_lib [![Phovea][phovea-image]][phovea-url] [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 =====================
 
 This bundle defines which plugins should be bundled in the library version of Phovea. 
@@ -8,8 +8,8 @@ Installation
 ------------
 
 ```
-git clone https://github.com/phovea/bundle_lib.git
-cd bundle_lib
+git clone https://github.com/phovea/phovea_bundle_lib.git
+cd phovea_bundle_lib
 npm install
 ```
 
@@ -37,9 +37,9 @@ This repository is part of **[Phovea](http://phovea.caleydo.org/)**, a platform 
 
 [phovea-image]: https://img.shields.io/badge/Phovea-Web%20Bundle-FABC15.svg
 [phovea-url]: https://phovea.caleydo.org
-[npm-image]: https://badge.fury.io/js/bundle_lib.svg
-[npm-url]: https://npmjs.org/package/bundle_lib
-[travis-image]: https://travis-ci.org/phovea/bundle_lib.svg?branch=master
-[travis-url]: https://travis-ci.org/phovea/bundle_lib
-[daviddm-image]: https://david-dm.org/phovea/bundle_lib.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/phovea/bundle_lib
+[npm-image]: https://badge.fury.io/js/phovea_bundle_lib.svg
+[npm-url]: https://npmjs.org/package/phovea_bundle_lib
+[travis-image]: https://travis-ci.org/phovea/phovea_bundle_lib.svg?branch=master
+[travis-url]: https://travis-ci.org/phovea/phovea_bundle_lib
+[daviddm-image]: https://david-dm.org/phovea/phovea_bundle_lib.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/phovea/phovea_bundle_lib
