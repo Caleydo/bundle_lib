@@ -63,10 +63,10 @@
     "webpack-dev-server": "^2.1.0-beta.9"
   },
   "dependencies": {
-    "phovea_core": "github:sgratzl/phovea_core",
-    "phovea_d3": "github:sgratzl/phovea_d3",
-    "phovea_vis": "github:sgratzl/phovea_vis",
-    "phovea_vis_lineup": "github:sgratzl/phovea_vis_lineup"
+    "phovea_core": "github:phovea/phovea_core",
+    "phovea_d3": "github:phovea/phovea_d3",
+    "phovea_vis": "github:phovea/phovea_vis",
+    "phovea_vis_lineup": "github:phovea/phovea_vis_lineup"
   },
   "name": "phovea_bundle_lib",
   "description": "a bundle for the library version of caleydo web",
