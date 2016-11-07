@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" /><!-- stop gap for https://github.com/phovea/phovea_bundle_lib/issues/4 -->
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="build/phovea_bundle_lib.js"></script>
+    <script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+    <script>
+      QUnit.test("phovea keys", function(assert) {
+        assert.deepEqual(Object.keys(phovea).sort(), ["core", "d3", "vis", "vis_lineup"]);
+      });
+      // Each repo should take care of testing its internals, so this is all we need here.
+    </script>
+  </body>
+</html>
