@@ -26,9 +26,7 @@
     "today": "Thu, 03 Nov 2016 14:17:55 GMT",
     "libraryExternals": [
       "d3",
-      "d3",
       "lineupjs",
-      "d3",
       "font-awesome"
     ]
   }
