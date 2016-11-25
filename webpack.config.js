@@ -4,12 +4,17 @@
  * Licensed under the new BSD license, available at http://caleydo.org/license
  **************************************************************************** */
 
-const {libraryAliases, modules, entries, ignores, type} = require('./.yo-rc.json')['generator-phovea'];
+const {libraryAliases, libraryExternals, modules, entries, ignores, type} = require('./.yo-rc.json')['generator-phovea'];
 const resolve = require('path').resolve;
 const pkg = require('./package.json');
 const webpack = require('webpack');
-const exists = require('fs').existsSync;
+const fs = require('fs');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const buildInfo = require('./buildInfo.js');
+
+const now = new Date();
+const buildId = `${now.getUTCFullYear()}${now.getUTCMonth()}${now.getUTCDate()}-${now.getUTCHours()}${now.getUTCMinutes()}${now.getUTCSeconds()}`;
+pkg.version = pkg.version.replace('SNAPSHOT', buildId);
 
 const year = (new Date()).getFullYear();
 const banner = '/*! ' + (pkg.title || pkg.name) + ' - v' + pkg.version + ' - ' + year + '\n' +
@@ -20,7 +25,7 @@ const banner = '/*! ' + (pkg.title || pkg.name) + ' - v' + pkg.version + ' - ' +
 
 //list of loaders and their mappings
 const webpackloaders = [
-  {test: /\.scss$/, loader: 'style!css!sass'},
+  {test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader'},
   {test: /\.tsx?$/, loader: 'awesome-typescript-loader'},
   {test: /\.json$/, loader: 'json-loader'},
   {
@@ -49,17 +54,6 @@ const webpackloaders = [
   {test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader'}
 ];
 
-/**
- * creates a shallow copy of an object
- *
- **/
-function simpleCopy(obj, r) {
-  r = r || {};
-  Object.keys(obj).forEach(function (d) {
-    r[d] = obj[d];
-  });
-  return r;
-}
 /**
  * tests whether the given phovea module name is matching the requested file and if so convert it to an external lookup
  * depending on the loading type
@@ -94,7 +88,9 @@ function testPhoveaModules(modules) {
 }
 
 // use ueber registry file if available
-const registryFile = exists(resolve(__dirname, '..', 'phovea_registry.js')) ? '../phovea_registry.js' : './phovea_registry.js';
+const isUeberContext = fs.existsSync(resolve(__dirname, '..', 'phovea_registry.js'));
+const registryFile = isUeberContext ? '../phovea_registry.js' : './phovea_registry.js';
+const actBuildInfoFile = `file-loader?name=buildInfo.json!${buildInfo.tmpFile()}`;
 
 /**
  * inject the registry to be included
@@ -104,11 +100,11 @@ const registryFile = exists(resolve(__dirname, '..', 'phovea_registry.js')) ? '.
 function injectRegistry(entry) {
   //build also the registry
   if (typeof entry === 'string') {
-    return [registryFile].concat(entry);
+    return [registryFile, actBuildInfoFile].concat(entry);
   } else {
     var transformed = {};
     Object.keys(entry).forEach((eentry) => {
-      transformed[eentry] = [registryFile].concat(entry[eentry]);
+      transformed[eentry] = [registryFile, actBuildInfoFile].concat(entry[eentry]);
     });
     return transformed;
   }
@@ -122,18 +118,18 @@ function generateWebpack(options) {
     entry: injectRegistry(options.entries),
     output: {
       path: resolve(__dirname, 'build'),
-      filename: (options.name || (pkg.name + (options.bundle ? '_bundle' : ''))) + (options.min ? '.min' : '') + '.js',
+      filename: (options.name || (pkg.name + (options.bundle ? '_bundle' : ''))) + (options.min && !options.nosuffix ? '.min' : '') + '.js',
       publicPath: '' //no public path = relative
     },
     resolve: {
       // Add `.ts` and `.tsx` as a resolvable extension.
       extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
-      alias: simpleCopy(options.libs || {}),
-      //fallback to the directory above if they are siblings
-      modules: [
+      alias: Object.assign({}, options.libs || {}),
+      //fallback to the directory above if they are siblings just in the ueber context
+      modules: isUeberContext ? [
         resolve(__dirname, '../'),
         'node_modules'
-      ]
+      ] : ['node_modules']
     },
     plugins: [
       new webpack.BannerPlugin({
@@ -143,7 +139,11 @@ function generateWebpack(options) {
       //define magic constants that are replaced
       new webpack.DefinePlugin({
         __VERSION__: JSON.stringify(pkg.version),
-        __LICENSE__: JSON.stringify(pkg.license)
+        __LICENSE__: JSON.stringify(pkg.license),
+        __BUILD_ID__: buildId,
+        __DEBUG__: options.isDev || options.isTest,
+        __TEST__: options.isTest,
+        __PRODUCTION__: options.isProduction
       }),
       new webpack.optimize.MinChunkSizePlugin({
         minChunkSize: 10000 //at least 10.000 characters
@@ -158,6 +158,18 @@ function generateWebpack(options) {
     devServer: {
       proxy: {
         '/api/*': {
+          target: 'http://localhost:9000',
+          secure: false
+        },
+        '/login': {
+          target: 'http://localhost:9000',
+          secure: false
+        },
+        '/logout': {
+          target: 'http://localhost:9000',
+          secure: false
+        },
+        '/loggedinas': {
           target: 'http://localhost:9000',
           secure: false
         }
@@ -180,7 +192,7 @@ function generateWebpack(options) {
 
   if (!options.bundle) {
     //if we don't bundle don't include external libraries and other phovea modules
-    base.externals.push.apply(base.externals, Object.keys(options.libs || {}));
+    base.externals.push(...(options.externals || Object.keys(options.libs || {})));
 
     //ignore all phovea modules
     if (options.modules) {
@@ -189,20 +201,28 @@ function generateWebpack(options) {
 
     //ignore extra modules
     (options.ignore || []).forEach(function (d) {
-      base.module.loaders.push({test: new RegExp(d), loader: 'null'}); //use null loader
+      base.module.loaders.push({test: new RegExp(d), loader: 'null-loader'}); //use null loader
     });
     //ingore phovea module registry calls
     (options.modules || []).forEach(function (m) {
-      base.module.loaders.push({test: new RegExp('.*[\\\\/]' + m + '[\\\\/]phovea_registry.js'), loader: 'null'}); //use null loader
+      base.module.loaders.push({test: new RegExp('.*[\\\\/]' + m + '[\\\\/]phovea_registry.js'), loader: 'null-loader'}); //use null loader
     });
-
+  }
+  if (!options.bundle || options.isApp) {
     //extract the included css file to own file
-    var p = new ExtractTextPlugin('style' + (options.min ? '.min' : '') + '.css');
+    var p = new ExtractTextPlugin({
+      filename: 'style' + (options.min && !options.nosuffix ? '.min' : '') + '.css',
+      allChunks: true // there seems to be a bug in dynamically loaded chunk styles are not loaded, workaround: extract all styles from all chunks
+    });
     base.plugins.push(p);
     base.module.loaders[0] = {
       test: /\.scss$/,
-      loader: p.extract(['css', 'sass'])
+      loader: p.extract(['css-loader', 'sass-loader'])
     };
+  }
+  if (options.isApp) {
+    // create manifest
+    // base.plugins.push(new webpack.optimize.AppCachePlugin());
   }
   if (options.commons) {
     //build a commons plugin
@@ -243,17 +263,22 @@ function generateWebpackConfig(env) {
   const base = {
     entries: entries,
     libs: libraryAliases,
+    externals: libraryExternals,
     modules: modules,
-    ignore: ignores
+    ignore: ignores,
+    isProduction: isProduction,
+    isDev: isDev,
+    isTest: isTest
   };
 
   if (isTest) {
-    return generateWebpack(simpleCopy(base, {
+    return generateWebpack(Object.assign({}, base, {
       bundle: true
     }));
   }
 
-  if (type === 'app') {
+  if (type.startsWith('app')) {
+    base.isApp = true;
     base.bundle = true; //bundle everything together
     base.name = '[name]'; //multiple entries case
     base.commons = true; //extract commons module
@@ -269,12 +294,17 @@ function generateWebpackConfig(env) {
   //single generation
   if (isDev) {
     return generateWebpack(base);
+  } else if (type === 'app') { //isProduction app
+    return generateWebpack(Object.assign({}, base, {
+        min: true,
+        nosuffix: true
+      }));
   } else { //isProduction
     return [
       //plain
       generateWebpack(base),
       //minified
-      generateWebpack(simpleCopy(base, {
+      generateWebpack(Object.assign({}, base, {
         min: true
       }))
     ];

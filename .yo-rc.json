@@ -19,12 +19,15 @@
       "redhatPackages": []
     },
     "libraryAliases": {
-      "d3": "d3/d3",
-      "lineupjs": "lineupjs",
-      "font-awesome": "font-awesome"
+      "d3": "d3/d3"
     },
     "entries": "./index.js",
     "ignores": [],
-    "today": "Thu, 03 Nov 2016 14:17:55 GMT"
+    "today": "Thu, 03 Nov 2016 14:17:55 GMT",
+    "libraryExternals": [
+      "d3",
+      "lineupjs",
+      "font-awesome"
+    ]
   }
 }
