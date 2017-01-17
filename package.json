@@ -64,10 +64,10 @@
     "extract-loader": "0.1.0"
   },
   "dependencies": {
-    "phovea_core": "github:phovea/phovea_core#develop",
-    "phovea_d3": "github:phovea/phovea_d3#develop",
-    "phovea_vis": "github:phovea/phovea_vis#develop",
-    "phovea_vis_lineup": "github:phovea/phovea_vis_lineup#develop"
+    "phovea_core": "github:phovea/phovea_core#feature_update_dependencies",
+    "phovea_d3": "github:phovea/phovea_d3#feature_update_dependencies",
+    "phovea_vis": "github:phovea/phovea_vis#feature_update_dependencies",
+    "phovea_vis_lineup": "github:phovea/phovea_vis_lineup#feature_update_dependencies"
   },
   "name": "phovea_bundle_lib",
   "description": "a bundle for the library version of caleydo web",
