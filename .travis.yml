@@ -1,27 +1,30 @@
 language: node_js
-
 node_js:
 - 6
-
+addons:
+  firefox: 49.0.1
 before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
-
-addons:
-  firefox: 49.0.1 
 script: npm run dist
-
-deploy:
-  provider: releases
-  api_key:
-    secure: TK9/P34Bi3WuppiDrBCwVcn41yCBwmILaU8hXTBzUPbT7TbeFIwsC6/4CtH85Z+ZrUve4S5pTmWRNf2dQDxWw3uYu7+bJuemV2J1LHG76mognj+TNEiYxfLQUt3Gql4W7C7FcI4Rlx5/uMN9wY1wro8TWUBMwT6jjSrUWIvK3GXoojd5bHvJx07XpjWl9wCon4D0ruZiFoM2mdeP23lbc2GckETi32oEKswnQXxkMACmxbPzoWbvkxH4aK8Bt2Rj2sl2TbPhVkN6DAkHGkGAvLI+2/aRfG27+oo3OKsaDjbuGABct8TfZccJ970CbQ8kbnCjYxstvqkg1JWjF0W67sX/flBZZOEUA5l0OLWo6HqMGMxm7/lEQhIdPMsRmvXL+HVOxkMrB2dda58QzxVwiZp+rRqUaeabPZp8Kl5xodGrVxsBvxe6zAbJ5jCtCSumG6+kLyKI00/kYlghqQNrgUw0ZsYJlQ34h3lo/24QpaeyDpQoCkGWQgtgqiXGpeKSu7bCnOqIqAy3nbT9Utwj7K8gIasTG5idosEAz/THMampNbGDuyxxc340sYGNMg9Bhm1g2ILWRdtV470p5hwBtIDTKi3/PAizEO26+Wh0zI47Sg3ao57avcbCsTmzbZUeA5J4bojmchhJCHX8su9cSCGh/2fJA/1eBIgEvOQ8LNE=
-  file: dist/phovea_bundle_lib.tar.gz
-  on:
-    tags: true
-
 notifications:
   slack:
-    secure: E8/1UIdHSczUbN+6i6gd1d5LM4vmLdwLQ30tpyjvnM0wvfDce76oPxLJAy240WJ5ybXRZUtNrttpVpt4tEXCy8aLFCmxD7s77rVloH+q1J8R/ptTFWZGhFGEujk1awEmVbzcWxJkV9/JENQaeGBKxwv8/EQwWwEkAb7p/+AJb9owmH88b3wUZUGHBWtbMiyyaF4Rm1Wg1stJB8Z1Ga7PRF4cqufTgcDdsCPVv9gAY+VxOIGqX/Vfuc9UWpUH8vq8lHUE7Inn5QS78kuFfSgLWga3H6Mu/Gko1XNlWk0QWWQBUvEZ6ZC6Wuo68KzvUjJHDTnx8WyfHue2JNHIslcX+eJq2WHLeEgM24VeNkILCGo/H/60NGHiSjrIv/Y9h6bQ9FDjo6TUyE4nbdPYN1RN9FQ5UbI9Y4Gi753H9mqnHWlEywBOzHxdZCAuz9Wh03CCF/blsvJ+Obbyo6Jrfe+g44jyi9kQdBNQ78qG6v4EXws8FiYao6x3PpgIwFix42Cpr+soAh5FpA3C1zHSAyZZpXF65/lrDl5yPNofK7Wy0B9bw+0I6Z/u7ZKFNVZXvYPGYvtUVcsALGBdmYc61+LCta36Po0KZseWVAlJj6QnOJDYzv0wvV/zsuf9A5KpYFGiqV9Q7zmtiO5FYF5sBy+lE7O9tHVO4O18IRndhRQgxhs=
+    secure: CVKS0ZdWmxff5P98R+eyY5dJafGmhhyNl5nTbUR+ivS7SEdJ/4oFW/Bx+0YgiU16qhBZlssJce4F68lyPxLG9MnVZaJ/Rl1sfL9WCO1mibF/xhIZRpqm6P5rW0rDlF7jRbLaYZasdIxhvomVIb1KW0dmt9UQ/ZdG8PZ7CcoXErwWPy2kPVEAZTR7URy4eRcUWk3k+iwzVAhwdykWmvBtXu7iRP5MGBII9+yGsm2+ppCi+QJMbZv+sgK8Cp5LGBy6PbMDGC5c4pvDjrTYFOZ1JH+BvKNW5NT25tGHJTd2zACRXDfwH3UKLWHahy7WOUyhSgrbpBaOSod+dVIt6/AOUdj8k+dJYGuSDAceAuWUXK67N9n49oa5Wx3LqZdJjYggri4geIWUH7x9BpzGBloocdsEVViCTlGxsSXpCeXpChAxX4yWLXBKbvd+4jE8ZPInNNJH/v2QA8jmq9afqke1SL3kARe/cMaE5C9xCCKHIpBOLi6MqqI3HnMYio4fFObzMRvhqRxnA3mCLq/QwLV2/+2Za5+0dET54mzWOdjLy5SjVjxdGOPPoL4rV3MUR8di97TQH7iAB710bfmIas/HiIgoN/DZ1XRXEcJgVIIBYXilU0d30Y5FDBsUrhr7wZ7UnCDv9KGDqbaN6DyHeHsAzkeLiEZbabyBwJ+1rzZxQco=
     on_success: change
     on_failure: always
+deploy:
+  - provider: releases
+    api_key:
+      secure: Mqk0ZkGFrkAA3CQzZAVFT4QYOoJEs1/2612Ri0TFvvramV7aRJZO6ozL+0jefZOmwQbCuHvBbOw0P6lV7cEQUu3kFy3T7spt84jSwXgGwZHogJ2UNJinXUAYRsCq1frMFOmWyDDlI6KHlB5gtHXBvFATNHyCXrKKvvJ6lhaoUS+yap+oEMInLUu9cP6+zfQ9QRgBI9DnkKdfWJ77/CZnfpg8fdoiI2rgc4JkfRNslLnaFq8AGbGSrMRrfpKr0ycMxXFI72nYctKLUfSUThY52EBxDOdTQg1sLPpefrNz7vVIr7i70oF1LF6c6+4mnmIybUjuXkKLoSAqgvqFtS948UsqOKpcjvpmENjet/AsEr/Y+GiTg1Bq+E5ZJGKJSHyDvNW9hdpMpZ5sS2uOalSJd7pZ/G7+ps2t3DlVr1S3qQkCm4HJ/fNnGQ3dcaV3EYAoy8Rbe73BZjPqW6hbJ/7C6V08j69nAxb7iTWcU3QlvSe8wKi4OalQ1pN20JZSwj0QRY30KaoPudd3GQxHwtEIu6kL9UXwc2RVrfYw/1AIXZrGWQ7L4Sb5mj5ahjUo7FGJlYXpclUm70ILg2hPfMbcIMFiGjDnexpEqbh+NluwtKHdH6zEgYwTEiARzKKEMc+X/w8LaN6WESy650mp5H+2zd9Jit7ALckIUESacRJwLcY=
+    file: dist/phovea_bundle_lib.tar.gz
+    on:
+      repo: phovea/phovea_bundle_lib
+      tags: true
+  - provider: npm
+    email: samuel.gratzl@jku.at
+    api_key:
+      secure: 1w4E0vviCFsOAh/L7CfVgp3LSitAsEg+Ma/w8hjD1/10jjdsUJkgXzxzcTH3sCGvTSCk06go60bCQDZcrtosb5AMYHeQ5OUryRKkAYWsRE18zTyC577z/OQxCwl4gjeZxQ5Zeq57VKOV29EL3BeCOrFH6G5CkDoEaJ++7V0PyxCAYWxCmSomAEiPR8h5MtftSbJ7VrLoiBnBSXCay4S3S+LFZk8EHJa+dB84EEMmDXF7AYWgetquGgf2ml4tP+3JmuWasrJru5aDdP+Bn6KUL5ePZ0nTBl/sXvUA/xVPTH8V/+IloinCyy79S7YYnCezd9luo2Qm9xN9BZoQprY6c8JfZHg80GA8Ls2ah6A4L7OEEvtDMmw+Sh8AbvpPx9WxDFtxa31QbLvglWJdIh0XTdHz+aqS8284otYNBIGPYTeAVa9scXsDkA6e3wvHoyGjsM8qGXi0l3/rO8xECBe2L8xydP82lV23OTLE84cniuj3wymVM5+JLCtITXN4Cm5BhkoDCxrTjW3rKNEHzUR/bT1OBzCS/WwVsjb6D1v+qPMwdJL47hdWDNs/yFTH+4eNimAMYqc+reVoGvzbVHXRDgzM8+/MSr0VAFdPQOxHVtEk8axRmmOfhsmyoYljWr3yOEmblw7Ee07tAzCAmZHUAi5RSqaS6UuS+u9BE/bbw8Y=
+    on:
+      tags: true
+      repo: phovea/phovea_bundle_lib

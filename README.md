@@ -32,7 +32,7 @@ npm run build
 ***
 
 <a href="https://caleydo.org"><img src="http://caleydo.org/assets/images/logos/caleydo.svg" align="left" width="200px" hspace="10" vspace="6"></a>
-This repository is part of **[Phovea](http://phovea.caleydo.org/)**, a platform for developing web-based visualization applications. For tutorials, API docs, and more information about the build and deployment process, see the [documentation page](http://caleydo.org/documentation/).
+This repository is part of **[Phovea](http://phovea.caleydo.org/)**, a platform for developing web-based visualization applications. For tutorials, API docs, and more information about the build and deployment process, see the [documentation page](http://phovea.caleydo.org).
 
 
 [phovea-image]: https://img.shields.io/badge/Phovea-Web%20Bundle-FABC15.svg
@@ -41,5 +41,5 @@ This repository is part of **[Phovea](http://phovea.caleydo.org/)**, a platform 
 [npm-url]: https://npmjs.org/package/phovea_bundle_lib
 [travis-image]: https://travis-ci.org/phovea/phovea_bundle_lib.svg?branch=master
 [travis-url]: https://travis-ci.org/phovea/phovea_bundle_lib
-[daviddm-image]: https://david-dm.org/phovea/phovea_bundle_lib.svg?theme=shields.io
+[daviddm-image]: https://david-dm.org/phovea/phovea_bundle_lib/status.svg
 [daviddm-url]: https://david-dm.org/phovea/phovea_bundle_lib
