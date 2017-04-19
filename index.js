@@ -5,12 +5,12 @@
  **************************************************************************** */
 
 Object.defineProperty(module.exports, '__publicPath', {
-	set: function(value) {
-		__webpack_public_path__ = value;
-	},
-	get: function() {
-		return __webpack_public_path__;
-	}
+  set: function (value) {
+    __webpack_public_path__ = value;
+  },
+  get: function () {
+    return __webpack_public_path__;
+  }
 });
 
 var parentScript = document.querySelector('script[src$="phovea_bundle_lib.js"]');
@@ -20,6 +20,7 @@ if (parentScript) {
     __webpack_public_path__ = src;
   }
 }
+
 
 //request index to avoid using the pre build version
 exports.core = require('phovea_core/index');
